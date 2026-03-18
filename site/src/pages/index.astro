@@ -51,6 +51,37 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</section>
 
+		<section id="team" class="team">
+			<div class="team-head">
+				<h2>Meet The Team</h2>
+				<p>
+					Our students run every part of the program, from robot design to strategy and outreach.
+				</p>
+			</div>
+			<div class="team-grid">
+				<article class="member-card">
+					<h3>Jake Hopkins</h3>
+					<p class="role">Captain / Mechanical</p>
+					<p>Leads build planning, robot architecture, and pit organization during events.</p>
+				</article>
+				<article class="member-card">
+					<h3>Alex Rivera</h3>
+					<p class="role">Programming Lead</p>
+					<p>Develops autonomous routines, drive controls, and match data tools.</p>
+				</article>
+				<article class="member-card">
+					<h3>Maya Chen</h3>
+					<p class="role">Electrical / Wiring</p>
+					<p>Owns wiring layout, electrical safety checks, and control board reliability.</p>
+				</article>
+				<article class="member-card">
+					<h3>Jordan Patel</h3>
+					<p class="role">Outreach Lead</p>
+					<p>Coordinates demos, mentor programs, and sponsor communication.</p>
+				</article>
+			</div>
+		</section>
+
 		<section id="support" class="support">
 			<h2>Partner With Cyber Knights</h2>
 			<p>
@@ -176,6 +207,51 @@ import Layout from '../layouts/Layout.astro';
 		font-size: 0.88rem;
 	}
 
+	.team {
+		margin-top: 2rem;
+	}
+
+	.team-head h2 {
+		margin: 0;
+	}
+
+	.team-head p {
+		color: var(--muted);
+		max-width: 68ch;
+		margin-top: 0.5rem;
+	}
+
+	.team-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.member-card {
+		padding: 1.1rem;
+		border: 1px solid var(--line);
+		border-radius: 14px;
+		background: linear-gradient(155deg, rgba(16, 53, 67, 0.86), rgba(12, 38, 48, 0.9));
+	}
+
+	.member-card h3 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.member-card .role {
+		margin: 0.35rem 0 0.55rem;
+		color: var(--accent-soft);
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
+
+	.member-card p {
+		margin-bottom: 0;
+		color: var(--muted);
+		line-height: 1.55;
+	}
+
 	.support {
 		margin-top: 2rem;
 		padding: 1.25rem;
@@ -195,7 +271,8 @@ import Layout from '../layouts/Layout.astro';
 
 	@media (max-width: 900px) {
 		.card-grid,
-		.metrics {
+		.metrics,
+		.team-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
@@ -206,7 +283,8 @@ import Layout from '../layouts/Layout.astro';
 		}
 
 		.card-grid,
-		.metrics {
+		.metrics,
+		.team-grid {
 			grid-template-columns: 1fr;
 		}
 
