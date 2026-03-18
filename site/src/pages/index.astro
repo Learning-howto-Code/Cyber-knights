@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Cyber Knights FRC" description="Build season updates, outreach impact, and sponsorship opportunities for the Cyber Knights robotics team.">
+	<main>
+		<header class="hero">
+			<p class="kicker">FIRST Robotics Competition</p>
+			<h1>Cyber Knights</h1>
+			<p class="intro">
+				We design, build, and program competition robots while mentoring students in engineering,
+				leadership, and community impact.
+			</p>
+			<div class="hero-actions">
+				<a href="#support" class="btn btn-primary">Sponsor The Team</a>
+				<a href="#season" class="btn btn-outline">2026 Season</a>
+			</div>
+		</header>
+
+		<section id="season" class="card-grid">
+			<article class="card">
+				<h2>Build Season</h2>
+				<p>From kickoff to competition, students lead CAD, fabrication, wiring, and autonomous strategy.</p>
+			</article>
+			<article class="card">
+				<h2>Outreach</h2>
+				<p>Our team hosts STEM nights, mentors FTC/FLL students, and demonstrates robotics in local schools.</p>
+			</article>
+			<article class="card">
+				<h2>Drive Team</h2>
+				<p>Scouting, human player coordination, and rapid pit cycles keep us alliance-ready all event long.</p>
+			</article>
+		</section>
+
+		<section class="metrics">
+			<div>
+				<strong>42</strong>
+				<span>Student Members</span>
+			</div>
+			<div>
+				<strong>1,100+</strong>
+				<span>Outreach Hours</span>
+			</div>
+			<div>
+				<strong>12</strong>
+				<span>Community Events</span>
+			</div>
+			<div>
+				<strong>100%</strong>
+				<span>Student-Led Build</span>
+			</div>
+		</section>
+
+		<section id="support" class="support">
+			<h2>Partner With Cyber Knights</h2>
+			<p>
+				Sponsorships fund robot parts, registration fees, travel, and hands-on education for every team member.
+			</p>
+			<a class="btn btn-primary" href="mailto:team@example.org">Become A Sponsor</a>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 1050px;
+		margin: 0 auto;
+		padding: 2rem 1.2rem 4rem;
+	}
+
+	.hero {
+		padding: 4.5rem 0 3rem;
+	}
+
+	.kicker {
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		font-size: 0.72rem;
+		color: var(--accent-soft);
+		margin-bottom: 0.8rem;
+	}
+
+	h1 {
+		font-size: clamp(2.4rem, 7vw, 5.8rem);
+		line-height: 1;
+		margin: 0;
+	}
+
+	.intro {
+		font-size: clamp(1rem, 2.2vw, 1.25rem);
+		max-width: 65ch;
+		color: var(--muted);
+		line-height: 1.7;
+		margin: 1.3rem 0 0;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 0.85rem;
+		margin-top: 1.8rem;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.75rem 1.2rem;
+		border-radius: 999px;
+		font-weight: 700;
+		border: 2px solid transparent;
+		transition: transform 180ms ease, box-shadow 180ms ease;
+	}
+
+	.btn:hover {
+		transform: translateY(-1px);
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, var(--accent), #ffa447);
+		color: #2d1604;
+		box-shadow: 0 10px 24px rgba(255, 122, 24, 0.35);
+	}
+
+	.btn-outline {
+		border-color: var(--line);
+		background: rgba(12, 39, 49, 0.35);
+	}
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.card {
+		background: linear-gradient(160deg, rgba(20, 62, 78, 0.9), rgba(14, 44, 56, 0.92));
+		border: 1px solid var(--line);
+		border-radius: 16px;
+		padding: 1.2rem;
+	}
+
+	.card h2 {
+		margin-top: 0;
+		font-size: 1.15rem;
+	}
+
+	.card p {
+		color: var(--muted);
+		line-height: 1.55;
+		margin-bottom: 0;
+	}
+
+	.metrics {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		margin-top: 1.25rem;
+		gap: 1rem;
+	}
+
+	.metrics div {
+		padding: 0.95rem 1rem;
+		border: 1px solid var(--line);
+		border-radius: 14px;
+		background: rgba(9, 34, 42, 0.56);
+	}
+
+	.metrics strong {
+		display: block;
+		font-size: 1.35rem;
+		color: var(--accent-soft);
+	}
+
+	.metrics span {
+		color: var(--muted);
+		font-size: 0.88rem;
+	}
+
+	.support {
+		margin-top: 2rem;
+		padding: 1.25rem;
+		border-radius: 18px;
+		border: 1px solid var(--line);
+		background: linear-gradient(140deg, rgba(17, 55, 69, 0.92), rgba(11, 33, 42, 0.95));
+	}
+
+	.support h2 {
+		margin: 0;
+	}
+
+	.support p {
+		color: var(--muted);
+		max-width: 70ch;
+	}
+
+	@media (max-width: 900px) {
+		.card-grid,
+		.metrics {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.hero {
+			padding-top: 3.2rem;
+		}
+
+		.card-grid,
+		.metrics {
+			grid-template-columns: 1fr;
+		}
+
+		main {
+			padding-top: 1rem;
+		}
+	}
+</style>
