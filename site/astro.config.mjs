@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
-const githubPagesBase = repo ? `/${repo}/` : '/';
+// Vercel exposes the production domain as VERCEL_PROJECT_PRODUCTION_URL (no scheme).
+// SITE_URL overrides it once a custom domain is attached.
+const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
 export default defineConfig({
-	// Local dev uses '/', while GitHub Actions builds from /<repo>/.
-	base: process.env.GITHUB_ACTIONS ? githubPagesBase : '/',
-	site: process.env.SITE_URL || (owner ? `https://${owner}.github.io` : 'https://example.com'),
+	site:
+		process.env.SITE_URL ||
+		(productionUrl ? `https://${productionUrl}` : 'http://localhost:4321'),
 });

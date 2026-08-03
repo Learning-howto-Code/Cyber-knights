@@ -1,38 +1,69 @@
-# Cyber Knights FRC Website
+# Cyber Knights — FRC 11243 landing page
 
-Astro site for an FRC team, set up for deployment to GitHub Pages.
+Single static page built with [Astro](https://astro.build). Recreated from the
+`design_handoff_cyber_nights_landing` handoff (option 2a, "sage-led") using the Organic
+design system.
 
-## Local Development
-
-1. Install dependencies:
+## Local development
 
 ```sh
 npm install
+npm run dev      # http://localhost:4321
+npm run build    # type-check + static build into dist/
+npm run preview  # serve the built dist/
 ```
 
-2. Start development server:
+## What to edit
 
-```sh
-npm run dev
-```
+Everything the team changes lives in **`src/site.config.ts`** — no copy, URL or fact is
+hard-coded in the markup.
 
-3. Build for production:
+| Thing | Where |
+| --- | --- |
+| Sign-up form link | `FORM_URL` |
+| Team name, number, email, socials | `team` |
+| Season / meeting times / room | `facts` |
+| Sponsor logos | `sponsors` |
+| Hero photo | `hero` |
+| Page copy (headline, two-column text) | `src/pages/index.astro` |
+| Colors, type, spacing tokens | `src/styles/organic-ds.css` |
+| Page layout on top of the tokens | `src/styles/site.css` |
 
-```sh
-npm run build
-```
+### Open items
 
-## GitHub Pages Deployment
+1. **`FORM_URL` is a placeholder.** Replace `https://forms.fillout.com/REPLACE-ME` in
+   `src/site.config.ts` with the real Fillout URL. The build prints a warning until you do.
+2. Drop the real hero photo (landscape, ≥1200×900) and four sponsor logos into `public/`,
+   then point `hero.src` / `sponsors[].src` at them. Slots with no `src` render a dashed
+   placeholder box.
+3. Set the real Instagram URL in `team.instagram`, and confirm `team.email` — the handoff
+   spelled it `cybernights11243@gmail.com` while the team name is "Cyber Knights".
+4. Confirm the meeting times, room number and season dates in `facts` — they came from the
+   handoff as placeholders.
 
-1. Push this repository to GitHub.
-2. In your repo settings, open **Pages** and set source to **GitHub Actions**.
-3. Ensure the workflow file in `.github/workflows/deploy.yml` is present.
-4. Push to `main` and GitHub Actions will build and publish automatically.
+## Theme
 
-### Optional: Custom Domain
+Manual light/dark toggle in the header, persisted to `localStorage`. It deliberately does
+**not** follow the OS setting. An inline script in `<head>` restores the stored choice
+before first paint so dark never flashes light.
 
-Set the `SITE_URL` repository variable to your production URL, for example:
+## Deployment — Vercel
 
-`https://robotics.yourschool.org`
+Hosted on Vercel with automatic deploys from GitHub. Pushes to `main` go to production;
+every other branch and pull request gets its own preview URL.
 
-If `SITE_URL` is not provided, the config falls back to `https://<owner>.github.io`.
+### One-time setup
+
+1. Go to <https://vercel.com/new> and import `Learning-howto-Code/Cyber-knights`.
+2. **Set Root Directory to `site`.** The repo root also holds `CAD/` and `code/`; without
+   this Vercel will not find the Astro project.
+3. Framework preset should auto-detect as **Astro**. Build settings are pinned in
+   `site/vercel.json` (`npm ci` → `npm run build` → `dist`), so leave the defaults alone.
+4. Deploy. No environment variables are required.
+
+`SITE_URL` is the only optional env var — set it once a custom domain is attached so
+canonical URLs point at the real domain. Without it the build falls back to Vercel's
+`VERCEL_PROJECT_PRODUCTION_URL`.
+
+There is no GitHub Actions workflow: Vercel's Git integration handles deploys. The old
+GitHub Pages workflow was removed when the site moved to Vercel.

@@ -1,0 +1,32 @@
+---
+/**
+ * Fills its parent box with a photo, or a labelled placeholder while the real
+ * asset is missing. Replaces the prototype's `image-slot.js` custom element.
+ */
+interface Props {
+	src?: string | undefined;
+	alt: string;
+	/** Shown inside the placeholder box. Falls back to `alt`. */
+	label?: string;
+	/** Set on the LCP image so it is not lazy-loaded. */
+	eager?: boolean;
+}
+
+const { src, alt, label, eager = false } = Astro.props;
+---
+
+{
+	src ? (
+		<img
+			class="img-slot"
+			src={src}
+			alt={alt}
+			loading={eager ? 'eager' : 'lazy'}
+			decoding="async"
+		/>
+	) : (
+		<div class="img-slot-empty" role="img" aria-label={alt}>
+			<span>{label ?? alt}</span>
+		</div>
+	)
+}

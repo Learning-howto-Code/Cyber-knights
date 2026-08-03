@@ -1,7 +1,8 @@
 {
-  "name": "site",
+  "name": "cyber-knights-site",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
   "engines": {
     "node": ">=20.9.0"
   },
@@ -12,11 +13,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.7.0",
-    "astro": "^4.16.18",
-    "typescript": "^5.9.3"
+    "astro": "^7.1.6"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0"
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^26.1.2",
+    "typescript": "^5.9.3"
   }
 }
