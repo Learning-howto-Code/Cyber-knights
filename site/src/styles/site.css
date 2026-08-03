@@ -209,6 +209,49 @@ html.pg[data-theme='dark'] .theme-toggle [data-when='light'] {
 	text-wrap: pretty;
 }
 
+/* — sign-up form — */
+.signup {
+	padding-top: 48px;
+	scroll-margin-top: 24px;
+}
+.signup-head {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 560px;
+	margin-bottom: 22px;
+}
+.signup h2 {
+	font-family: var(--font-heading);
+	font-weight: var(--font-heading-weight);
+	font-size: 22px;
+	letter-spacing: normal;
+	margin: 0;
+}
+.signup-head p {
+	font-size: 16px;
+	line-height: 1.75;
+	color: var(--muted);
+	margin: 0;
+	text-wrap: pretty;
+}
+/* The form renders in a Fillout iframe with its own (light) styling, so the
+   frame stays on --color-surface rather than inheriting the dark ground. */
+.signup-frame {
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	background: var(--color-surface);
+}
+.fillout-embed {
+	width: 100%;
+	height: 500px;
+}
+.signup-fallback {
+	margin: 14px 0 0;
+	font-size: 14px;
+	color: var(--muted);
+}
+
 /* — sponsors — */
 .sponsors {
 	display: flex;
@@ -289,7 +332,15 @@ html.pg[data-theme='dark'] .theme-toggle [data-when='light'] {
 	}
 }
 
+/* The hero CTA is an in-page jump to the embedded form. */
+html {
+	scroll-behavior: smooth;
+}
+
 @media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 	body {
 		transition: none;
 	}

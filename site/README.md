@@ -20,7 +20,7 @@ hard-coded in the markup.
 
 | Thing | Where |
 | --- | --- |
-| Sign-up form link | `FORM_URL` |
+| Sign-up form | `FORM_ID` (Fillout → Share → Embed) |
 | Team name, number, email, socials | `team` |
 | Season / meeting times / room | `facts` |
 | Sponsor logos | `sponsors` |
@@ -29,17 +29,33 @@ hard-coded in the markup.
 | Colors, type, spacing tokens | `src/styles/organic-ds.css` |
 | Page layout on top of the tokens | `src/styles/site.css` |
 
+## Sign-up form
+
+The Fillout form is embedded inline in the "Sign up to join" section
+(`id="signup-form"`). The hero CTA is an in-page jump to it, not an outbound link.
+
+- `FORM_ID` in `src/site.config.ts` is the Fillout embed id. Change the form in Fillout
+  and the site picks it up — no redeploy needed.
+- The loader (`https://server.fillout.com/embed/v1/`) is marked `is:inline` so Astro
+  leaves the third-party script alone.
+- `data-fillout-dynamic-resize` means the embed grows to fit its content; the 500px in
+  `.fillout-embed` is only the pre-load height.
+- A "Form not loading?" link sits under the embed pointing at the hosted form, for
+  visitors on networks that block the script.
+- The embed is an iframe with Fillout's own styling — it does **not** follow the site's
+  dark mode. That is why `.signup-frame` stays on `--color-surface`.
+
 ### Open items
 
-1. **`FORM_URL` is a placeholder.** Replace `https://forms.fillout.com/REPLACE-ME` in
-   `src/site.config.ts` with the real Fillout URL. The build prints a warning until you do.
-2. Drop the real hero photo (landscape, ≥1200×900) and four sponsor logos into `public/`,
+1. Drop the real hero photo (landscape, ≥1200×900) and four sponsor logos into `public/`,
    then point `hero.src` / `sponsors[].src` at them. Slots with no `src` render a dashed
    placeholder box.
-3. Set the real Instagram URL in `team.instagram`, and confirm `team.email` — the handoff
+2. Set the real Instagram URL in `team.instagram`, and confirm `team.email` — the handoff
    spelled it `cybernights11243@gmail.com` while the team name is "Cyber Knights".
-4. Confirm the meeting times, room number and season dates in `facts` — they came from the
+3. Confirm the meeting times, room number and season dates in `facts` — they came from the
    handoff as placeholders.
+4. Rename the form in Fillout — it is still called "My form 2", which shows as the browser
+   tab title on the hosted fallback link.
 
 ## Theme
 

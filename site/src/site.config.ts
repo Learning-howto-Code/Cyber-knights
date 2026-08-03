@@ -3,31 +3,36 @@
  */
 
 /**
- * The Fillout sign-up form. The "Sign up to join" CTA points at this.
- *
- * TODO(team): replace with the real Fillout URL, e.g.
- *   https://forms.fillout.com/t/<your-form-id>
- * Until then the button is disabled-looking and goes nowhere useful.
+ * Fillout sign-up form, embedded inline in the "Sign up" section.
+ * Find the id in Fillout under Share → Embed (`data-fillout-id`).
  */
-export const FORM_URL = 'https://forms.fillout.com/REPLACE-ME';
+export const FORM_ID = 'ohcHRmdAFLus';
 
-/** True once FORM_URL has been swapped for a real one. Drives a dev-only warning. */
-export const FORM_URL_IS_PLACEHOLDER = FORM_URL.includes('REPLACE-ME');
+/**
+ * Hosted version of the same form. Used only by the "Form not loading?" fallback
+ * link under the embed — the hero CTA jumps to FORM_ANCHOR, it does not leave the page.
+ * `campfire` is the team's Fillout workspace subdomain. The generic
+ * `forms.fillout.com/t/<id>` host serves the same form, so either works.
+ */
+export const FORM_URL = `https://campfire.fillout.com/t/${FORM_ID}`;
+
+/** The hero CTA scrolls to the embed rather than leaving the page. */
+export const FORM_ANCHOR = '#signup-form';
 
 export const team = {
 	name: 'Cyber Knights',
 	number: 'FRC 11243',
 	/** TODO(team): confirm — the handoff spelled this "cybernights11243@gmail.com". */
-	email: 'cybernights11243@gmail.com',
+	email: 'hello@frc11243.org',
 	instagram: '#',
 	github: 'https://github.com/Learning-howto-Code/Cyber-knights',
 } as const;
 
 /** TODO(team): confirm these before launch — they are placeholder facts from the handoff. */
 export const facts = [
-	{ label: 'Season', value: 'January – April' },
-	{ label: 'Meets', value: 'Tue & Thu 6–9pm, Sat 10–4' },
-	{ label: 'Where', value: 'School shop, room 114' },
+	{ label: 'Season', value: 'Now – April' },
+	{ label: 'Meets', value: 'Every day after school' },
+	{ label: 'Where', value: 'TBD' },
 ] as const;
 
 /**
@@ -45,6 +50,6 @@ export const sponsors = [
  * Hero photograph — landscape, at least 1200×900. Drop it in `public/` and set `src`.
  */
 export const hero = {
-	src: undefined as string | undefined,
+	src: '/hero.JPG' as string | undefined,
 	alt: 'Cyber Knights students working on the competition robot',
 };

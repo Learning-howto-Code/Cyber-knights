@@ -2,19 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import ImageSlot from '../components/ImageSlot.astro';
 import {
+	FORM_ANCHOR,
+	FORM_ID,
 	FORM_URL,
-	FORM_URL_IS_PLACEHOLDER,
 	facts,
 	hero,
 	sponsors,
 	team,
 } from '../site.config';
-
-if (FORM_URL_IS_PLACEHOLDER) {
-	console.warn(
-		'[cyber-knights] FORM_URL in src/site.config.ts is still the placeholder — the "Sign up to join" CTA does not point at a real Fillout form.',
-	);
-}
 
 const title = `${team.name} — ${team.number}`;
 const description =
@@ -45,16 +40,10 @@ const description =
 				<span class="kicker hero-kicker">Now recruiting · 2027 season</span>
 				<h1 class="hero-title">Come build robots with {team.name}.</h1>
 				<p class="hero-lede">
-					We're FRC Team 11243 — students who design, build, wire and drive a
-					120-pound competition robot every winter. Come find out what you're
-					good at.
+					We're FRC Team 11243 — A robotics team that creates a 120-pound autonomous robot every winter as a part of league of thousands of teams
+					Students to everything, from designing and creating the robot to wiring, coding, and driving it. All experience levels are more than welcome.
 				</p>
-				<a
-					class="btn btn-primary hero-cta"
-					href={FORM_URL}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
+				<a class="btn btn-primary hero-cta" href={FORM_ANCHOR}>
 					Sign up to join →
 				</a>
 				<span class="hero-fineprint">
@@ -87,17 +76,42 @@ const description =
 				<p>
 					Every January FIRST announces a new game, and we get six weeks to build
 					a robot that plays it. Students run the CAD, machining, wiring, code
-					and driving; mentors teach rather than take over.
+					and driving.
 				</p>
 			</div>
 			<div class="two-col">
 				<h2>Where you'd fit</h2>
 				<p>
 					Mechanical, electrical, programming, CAD, media, business and scouting
-					— every one is a real job here. Try a few, then pick the one you can't
-					stop thinking about.
+					— every one is a real job here. You can try them all, or focus on what you already know.
 				</p>
 			</div>
+		</section>
+
+		<section class="wrap signup" id="signup-form">
+			<div class="signup-head">
+				<h2>Sign up to join</h2>
+				<p>
+					Complete this short form and we'll reach out  with more info!
+				</p>
+			</div>
+			<div class="signup-frame">
+				<div
+					class="fillout-embed"
+					data-fillout-id={FORM_ID}
+					data-fillout-embed-type="standard"
+					data-fillout-inherit-parameters
+					data-fillout-dynamic-resize
+				>
+				</div>
+			</div>
+			<p class="signup-fallback">
+				Form not loading? <a href={FORM_URL} target="_blank" rel="noopener noreferrer">
+					Open it in a new tab
+				</a>.
+			</p>
+			{/* Third-party embed loader — is:inline keeps Astro from bundling it. */}
+			<script is:inline src="https://server.fillout.com/embed/v1/"></script>
 		</section>
 
 		<section class="wrap sponsors">
